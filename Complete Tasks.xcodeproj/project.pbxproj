@@ -7,12 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C91BF61D19D2106400301472 /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91BF61C19D2106400301472 /* TaskModel.swift */; };
+		C91BF61F19D215E300301472 /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91BF61E19D215E300301472 /* TaskDetailViewController.swift */; };
+		C966053419D3669900B00670 /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C966053319D3669900B00670 /* AddTaskViewController.swift */; };
+		C99E306719D2ECF600BB0162 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99E306619D2ECF500BB0162 /* Date.swift */; };
 		C9C1436519D1ADC90039D0D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C1436419D1ADC90039D0D2 /* AppDelegate.swift */; };
 		C9C1436719D1ADC90039D0D2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C1436619D1ADC90039D0D2 /* ViewController.swift */; };
 		C9C1436A19D1ADC90039D0D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9C1436819D1ADC90039D0D2 /* Main.storyboard */; };
 		C9C1436C19D1ADC90039D0D2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9C1436B19D1ADC90039D0D2 /* Images.xcassets */; };
 		C9C1436F19D1ADC90039D0D2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9C1436D19D1ADC90039D0D2 /* LaunchScreen.xib */; };
 		C9C1437B19D1ADC90039D0D2 /* Complete_TasksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C1437A19D1ADC90039D0D2 /* Complete_TasksTests.swift */; };
+		C9C1438519D1BC170039D0D2 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C1438419D1BC170039D0D2 /* TaskCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,6 +31,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C91BF61C19D2106400301472 /* TaskModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
+		C91BF61E19D215E300301472 /* TaskDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
+		C966053319D3669900B00670 /* AddTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
+		C99E306619D2ECF500BB0162 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		C9C1435F19D1ADC90039D0D2 /* Complete Tasks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Complete Tasks.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9C1436319D1ADC90039D0D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9C1436419D1ADC90039D0D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -36,6 +45,7 @@
 		C9C1437419D1ADC90039D0D2 /* Complete TasksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Complete TasksTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9C1437919D1ADC90039D0D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9C1437A19D1ADC90039D0D2 /* Complete_TasksTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Complete_TasksTests.swift; sourceTree = "<group>"; };
+		C9C1438419D1BC170039D0D2 /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +66,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C91BF61B19D2104700301472 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C91BF61C19D2106400301472 /* TaskModel.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		C9C1435619D1ADC80039D0D2 = {
 			isa = PBXGroup;
 			children = (
@@ -77,8 +95,13 @@
 		C9C1436119D1ADC90039D0D2 /* Complete Tasks */ = {
 			isa = PBXGroup;
 			children = (
+				C91BF61B19D2104700301472 /* Model */,
 				C9C1436419D1ADC90039D0D2 /* AppDelegate.swift */,
 				C9C1436619D1ADC90039D0D2 /* ViewController.swift */,
+				C91BF61E19D215E300301472 /* TaskDetailViewController.swift */,
+				C9C1438419D1BC170039D0D2 /* TaskCell.swift */,
+				C99E306619D2ECF500BB0162 /* Date.swift */,
+				C966053319D3669900B00670 /* AddTaskViewController.swift */,
 				C9C1436819D1ADC90039D0D2 /* Main.storyboard */,
 				C9C1436B19D1ADC90039D0D2 /* Images.xcassets */,
 				C9C1436D19D1ADC90039D0D2 /* LaunchScreen.xib */,
@@ -213,7 +236,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9C1436719D1ADC90039D0D2 /* ViewController.swift in Sources */,
+				C99E306719D2ECF600BB0162 /* Date.swift in Sources */,
+				C9C1438519D1BC170039D0D2 /* TaskCell.swift in Sources */,
+				C91BF61D19D2106400301472 /* TaskModel.swift in Sources */,
 				C9C1436519D1ADC90039D0D2 /* AppDelegate.swift in Sources */,
+				C91BF61F19D215E300301472 /* TaskDetailViewController.swift in Sources */,
+				C966053419D3669900B00670 /* AddTaskViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,6 +435,7 @@
 				C9C1438019D1ADC90039D0D2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C9C1438119D1ADC90039D0D2 /* Build configuration list for PBXNativeTarget "Complete TasksTests" */ = {
 			isa = XCConfigurationList;
@@ -415,6 +444,7 @@
 				C9C1438319D1ADC90039D0D2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
