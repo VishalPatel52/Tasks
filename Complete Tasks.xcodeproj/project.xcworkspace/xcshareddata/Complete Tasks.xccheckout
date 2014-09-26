@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>2686902C-C1C0-415D-8978-14D9F105A339</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Complete Tasks</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>4ED4E46A3C710B4954C987681E2B20AAE9B8A8B0</key>
+		<string>github.com:VishalPatel52/CompleteTask.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Complete Tasks.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>4ED4E46A3C710B4954C987681E2B20AAE9B8A8B0</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:VishalPatel52/CompleteTask.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>4ED4E46A3C710B4954C987681E2B20AAE9B8A8B0</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>4ED4E46A3C710B4954C987681E2B20AAE9B8A8B0</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Complete%20Tasks</string>
+		</dict>
+	</array>
+</dict>
+</plist>

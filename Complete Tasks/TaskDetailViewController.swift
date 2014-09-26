@@ -18,8 +18,10 @@ class TaskDetailViewController:UIViewController {
     
     var detailTaskModel:TaskModel!
     
+    /*Add a property named mainVC that is of type ViewController.
+    load view*/
+    var mainVC:ViewController!
     
-    //load view
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,6 +36,17 @@ class TaskDetailViewController:UIViewController {
     }
     
     @IBAction func saveButtonPressed(sender: UIBarButtonItem) {
+        /*We want to create the task, and then instead of adding the task to our array, we are going to replace the one we are editing with the edited task.*/
+        //A temporary task created for was updated by user at detailViewController
+        var thisTask = TaskModel(task: taskFieldLabel.text, subTask: subTaskFieldLabel.text, date: dueDatePicker.date, completed:false)
+        //and now update the taskArray with updated task
+        mainVC.baseArray[0][mainVC.tableView.indexPathForSelectedRow()!.row] = thisTask
+        mainVC.tableView.reloadData()
+        
+        
+        //change back to main task controller view with save button pressed
+        self.navigationController?.popViewControllerAnimated(true)
+        
     }
     
 }
