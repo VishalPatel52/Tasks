@@ -7,41 +7,25 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
     
     
+    // manageObjectContext and fetchResultController for coreData
+    
+    let manageObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext!
+    
+    var fetchRequestsController: NSFetchedResultsController = NSFetchedResultsController()
+    
     
     var baseArray:[[TaskModel]] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        //Create emptey of Dictionary for holding different tasks
-        // defining tasks with Dictionary
-//        let task1:Dictionary<String, String> = ["task":"fill up forms for the passport", "subtask":"print form", "date":"01/12/2014"]
-//        let task2:Dictionary<String, String> = ["task":"buy medicine","subtask":"get the prescription", "date":"21/11/2014"]
-//        let task3:Dictionary<String, String> = ["task":"finish project", "subtask":"prepare documentation", "date":"30/09/2014"]
 
-        println("TEST")
-
-        var date1 = Date.from(year: 2015, month: 12, day: 11)
-        var date2 = Date.from(year: 2014, month: 09, day: 30)
-        var date3 = Date.from(year: 2014, month: 09, day: 25)
-
-        let task1 = TaskModel(task: "get food", subTask: "cook it first", date: date1, completed: false)
-        let task2 = TaskModel(task: "buy medicine", subTask:"print fasdf", date:date2, completed: false)
-        let task3 = TaskModel(task: "go to pub", subTask: "drink beer", date:date3, completed:false)
-        
-        var taskArray = [task1, task2, task3]
-        var completedArray = [TaskModel (task: "code", subTask: "finish video", date: date1, completed: true)]
-        
-        baseArray = [taskArray, completedArray]
-        
-        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -171,6 +155,16 @@ We'll use the function commitEditingStyle, to detect the delete button being tap
         baseArray[indexPath.section].removeAtIndex(indexPath.row)
         tableView.reloadData()
         
+    }
+    
+    
+    //Helper function 
+    
+    func taskFetchRequest() -> NSFetchRequest {
+        let fetchRequst = NSFetchRequest(entityName: "TaskModel")
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
+        fetchRequst.sortDescriptors = [sortDescriptor]
+        return fetchRequst
     }
     
 
