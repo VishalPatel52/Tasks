@@ -18,7 +18,7 @@
 		C9C1437B19D1ADC90039D0D2 /* Complete_TasksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C1437A19D1ADC90039D0D2 /* Complete_TasksTests.swift */; };
 		C9C1438519D1BC170039D0D2 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C1438419D1BC170039D0D2 /* TaskCell.swift */; };
 		C9C2AB4119D627180074E137 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C2AB4019D627180074E137 /* CoreData.framework */; };
-		C9C2AB4419D628240074E137 /* CompleteTaskModdel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C9C2AB4219D628230074E137 /* CompleteTaskModdel.xcdatamodeld */; };
+		C9C2AB4419D628240074E137 /* CompleteTaskModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C9C2AB4219D628230074E137 /* CompleteTaskModel.xcdatamodeld */; };
 		C9C2AB4619D629560074E137 /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C2AB4519D629560074E137 /* TaskModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -48,7 +48,7 @@
 		C9C1437A19D1ADC90039D0D2 /* Complete_TasksTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Complete_TasksTests.swift; sourceTree = "<group>"; };
 		C9C1438419D1BC170039D0D2 /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 		C9C2AB4019D627180074E137 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		C9C2AB4319D628240074E137 /* CompleteTaskModdel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CompleteTaskModdel.xcdatamodel; sourceTree = "<group>"; };
+		C9C2AB4319D628240074E137 /* CompleteTaskModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CompleteTaskModel.xcdatamodel; sourceTree = "<group>"; };
 		C9C2AB4519D629560074E137 /* TaskModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskModel.swift; path = ../TaskModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,7 +111,7 @@
 				C9C1436B19D1ADC90039D0D2 /* Images.xcassets */,
 				C9C1436D19D1ADC90039D0D2 /* LaunchScreen.xib */,
 				C9C1436219D1ADC90039D0D2 /* Supporting Files */,
-				C9C2AB4219D628230074E137 /* CompleteTaskModdel.xcdatamodeld */,
+				C9C2AB4219D628230074E137 /* CompleteTaskModel.xcdatamodeld */,
 			);
 			path = "Complete Tasks";
 			sourceTree = "<group>";
@@ -242,7 +242,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9C2AB4419D628240074E137 /* CompleteTaskModdel.xcdatamodeld in Sources */,
+				C9C2AB4419D628240074E137 /* CompleteTaskModel.xcdatamodeld in Sources */,
 				C9C1436719D1ADC90039D0D2 /* ViewController.swift in Sources */,
 				C99E306719D2ECF600BB0162 /* Date.swift in Sources */,
 				C9C1438519D1BC170039D0D2 /* TaskCell.swift in Sources */,
@@ -457,13 +457,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		C9C2AB4219D628230074E137 /* CompleteTaskModdel.xcdatamodeld */ = {
+		C9C2AB4219D628230074E137 /* CompleteTaskModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				C9C2AB4319D628240074E137 /* CompleteTaskModdel.xcdatamodel */,
+				C9C2AB4319D628240074E137 /* CompleteTaskModel.xcdatamodel */,
 			);
-			currentVersion = C9C2AB4319D628240074E137 /* CompleteTaskModdel.xcdatamodel */;
-			path = CompleteTaskModdel.xcdatamodeld;
+			currentVersion = C9C2AB4319D628240074E137 /* CompleteTaskModel.xcdatamodel */;
+			path = CompleteTaskModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

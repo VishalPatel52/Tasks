@@ -14,11 +14,12 @@ class AddTaskViewController:UIViewController {
     
     //initialise a instance of UIViewController for pasing UIViewController data from TaskViewController to AddTaskViewController (this controller)
     
-    var mainVC:ViewController!
+    //var mainVC:ViewController! no logner needed due to fetchResultsController using CoreDate
     
     @IBOutlet weak var addTaskLabel: UITextField!
     @IBOutlet weak var addSubtaskLabel: UITextField!
     @IBOutlet weak var addNewtaskDatePicker: UIDatePicker!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,13 +35,13 @@ class AddTaskViewController:UIViewController {
         let appDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
         
         //use appDelegate to access out ManageObjectContext --> a property defined in AppDelegate
-        let manageObjectContext = appDelegate.managedObjectContext
+        let managedObjectContext = appDelegate.managedObjectContext
         
         //Next, we create an NSEntityDescription instance using the name of our Entity, which is TaskModel and the managedObjectContext from our AppDelegate.
-        let entityDescription = NSEntityDescription.entityForName("TaskModel", inManagedObjectContext: manageObjectContext!)
+        let entityDescription = NSEntityDescription.entityForName("TaskModel", inManagedObjectContext: managedObjectContext!)
         
         //Now we can create a TaskModel instance. The new function for creation takes 2 parameters. The first is the entityDescription instance we just created, and the second is the managedObjectContext from our AppDelegate.
-        let task = TaskModel(entity: entityDescription!, insertIntoManagedObjectContext: manageObjectContext!)
+        let task = TaskModel(entity: entityDescription!, insertIntoManagedObjectContext: managedObjectContext!)
         
         //We then can update our Task instance's properties using the information from our TextFields and DatePicker.
         task.task = addTaskLabel.text
@@ -56,7 +57,7 @@ class AddTaskViewController:UIViewController {
         var request = NSFetchRequest(entityName: "TaskModel")
         var error:NSError? = nil
     
-        var results:NSArray = manageObjectContext!.executeFetchRequest(request, error: &error)!
+        var results:NSArray = managedObjectContext!.executeFetchRequest(request, error: &error)!
         
         for res in results {
             println(res)

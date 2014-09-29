@@ -9,22 +9,25 @@
 import UIKit
 import CoreData
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
     
     // manageObjectContext and fetchResultController for coreData
     
-    let manageObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext!
+    let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext! //directly getting managedObjects from AppDelegate
     
-    var fetchRequestsController: NSFetchedResultsController = NSFetchedResultsController()
+    var fetchRequestsController: NSFetchedResultsController = NSFetchedResultsController() //Fetch request  
     
-    
-    var baseArray:[[TaskModel]] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //fetchRequest
+        fetchRequestsController = getFetchRequest()
+        fetchRequestsController.delegate = self
+        fetchRequestsController.performFetch(nil)
 
     }
 
@@ -44,24 +47,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             // get the index of the row that the user clicked on
             let indexPath = self.tableView.indexPathForSelectedRow()
             
-            // put the data of the task at that index into the thisTask variable
-            let currentTask = baseArray[indexPath!.section][indexPath!.row]
+            // put the data of the task at that index into the thisTask coreData Taskmodel
+            let currentTask = fetchRequestsController.objectAtIndexPath(indexPath!) as TaskModel
             
             // finally, set the detailTaskModel variable (which we created in the TaskDetailViewController file) to thisTask
             detailVC.detailTaskModel = currentTask
-            detailVC.mainVC = self
         }
         else if segue.identifier == "showAddTask" {
             let addTaskVC:AddTaskViewController = segue.destinationViewController as AddTaskViewController
             
-            addTaskVC.mainVC = self
         }
     }
     
     
-    /*We are overriding the viewDidAppear function, which will be called each time the view is presented on the screen. This is different then viewDidLoad which is only called the first time a given ViewController (in this case, the main ViewController) is created. Next, we call the viewDidAppear function on the keyword super, which implements the viewDidAppear functionality from the main ViewController's super classes implementation of viewDidAppear. In effect, we get access to the default functionality of viewDidAppear for free. Finally, we call the function reloadData on the the tableView. This function causes the tableView to recall it's dataSource functions and repopulate the tableView with the updated array.*/
+    /*We are overriding the viewDidAppear function, which will be called each time the view is presented on the screen. This is different then viewDidLoad which is only called the first time a given ViewController (in this case, the main ViewController) is created. Next, we call the viewDidAppear function on the keyword super, which implements the viewDidAppear functionality from the main ViewController's super classes implementation of viewDidAppear. In effect, we get access to the default functionality of viewDidAppear for free. Finally, we call the function reloadData on the the tableView. This function causes the tableView to recall it's dataSource functions and repopulate the tableView with the updated array. This is no longer needed due to CoreData implementation, which takes care of sorting*/
     
-    override func viewDidAppear(animated: Bool) {
+    /*override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         //sorting tasks by date everytime new is added or existing task is changed
         baseArray[0] = baseArray[0].sorted({ (T1:TaskModel, T2:TaskModel) -> Bool in
@@ -69,7 +70,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         })
         self.tableView.reloadData()
         
-    }
+    }*/
     
     
     // fuction for sorting tasks by date
@@ -81,12 +82,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     follwing two methods are implemented due to protocols and delegate of the TableView (UITableViewDelegate and UITableViewDataSource )*/
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 
-        return baseArray.count // actually 2 sections: one section for not completed tasks and other for completed tasks
+        return fetchRequestsController.sections!.count // actually 2 sections: one section for not completed tasks and other for completed tasks
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return baseArray[section].count
+        return fetchRequestsController.sections![section].numberOfObjects
     }
     
     
@@ -94,7 +95,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell:TaskCell = tableView.dequeueReusableCellWithIdentifier("myCell") as TaskCell
         
-        let currentTask = baseArray[indexPath.section][indexPath.row]
+        let currentTask = fetchRequestsController.objectAtIndexPath(indexPath) as TaskModel
         
         //accessing dictionary suing keys
 //        cell.taskLabel.text = taskDict["task"]
@@ -134,26 +135,29 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             return "Completed:"
         }
     }
-
+    
+    // NSFetchedResultsControllerDelegate
+    /*We need to implement the function controllDidChangeContext. This function is called when the NSFetchedResults controller detects changes made in the CoreData stack. Each time it detects changes, we want to reload the information in the tableView. This is easier then having to call reload ourselves throught the ViewController.*/
+    
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        tableView.reloadData()
+    }
     
     /*We want to allow the user to swipe a task to mark it as complete. We’ll do that using another tableview delegate and replace our incomplete task with a complete one.
 We'll use the function commitEditingStyle, to detect the delete button being tapped when cells are swiped. Once we detect the delete button tapped, we will first determine which TaskModel was being swiped on. Then we create a new TaskModel using the properties from the current TaskModel and set its' completion to true. After we remove the original TaskModel from the baseArray, insert the new TaskModel into the baseArray's completed Array. Finally, we call reloadData on our TableView, to display the updates to our baseArray.*/
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
-        let thisTask = baseArray[indexPath.section][indexPath.row]
+        let thisTask = fetchRequestsController.objectAtIndexPath(indexPath) as TaskModel
         
         if indexPath.section == 0 {
-            var completeTask = TaskModel(task: thisTask.task, subTask: thisTask.subTask, date: thisTask.date, completed: true)
-            baseArray[1].append(completeTask)
+            thisTask.completed = true
         }
         else {
-            var notCompleteTask = TaskModel(task: thisTask.task, subTask: thisTask.subTask, date: thisTask.date, completed: false)
-            baseArray[0].append(notCompleteTask)
+            thisTask.completed = false
         }
-
-        baseArray[indexPath.section].removeAtIndex(indexPath.row)
-        tableView.reloadData()
+        //access to AppDelegate instance via (UIApplication.sharedApplication().delegate as AppDelegate)
+        (UIApplication.sharedApplication().delegate as AppDelegate).saveContext()
         
     }
     
@@ -163,11 +167,16 @@ We'll use the function commitEditingStyle, to detect the delete button being tap
     func taskFetchRequest() -> NSFetchRequest {
         let fetchRequst = NSFetchRequest(entityName: "TaskModel")
         let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
-        fetchRequst.sortDescriptors = [sortDescriptor]
+        let completedSortDesciptor = NSSortDescriptor(key: "completed", ascending: true)
+        fetchRequst.sortDescriptors = [completedSortDesciptor, sortDescriptor]
         return fetchRequst
     }
     
 
-
+    func getFetchRequest() -> NSFetchedResultsController {
+        
+        fetchRequestsController = NSFetchedResultsController(fetchRequest: taskFetchRequest(), managedObjectContext: managedObjectContext, sectionNameKeyPath: "completed", cacheName: nil)
+        return fetchRequestsController
+    }
 }
 
