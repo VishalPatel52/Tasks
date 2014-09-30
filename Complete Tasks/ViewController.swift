@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Vishal Patel. All rights reserved.
 //
 
+
 import UIKit
 import CoreData
 
@@ -23,7 +24,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.tableView.backgroundColor = UIColor(red: (48/255), green: (123/255), blue: (27/255), alpha: 1)
+            
+            
         //fetchRequest
         fetchRequestsController = getFetchRequest()
         fetchRequestsController.delegate = self
@@ -97,6 +100,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let currentTask = fetchRequestsController.objectAtIndexPath(indexPath) as TaskModel
         
+        
+        // changing tableview cell color
+        
+        if indexPath.row%2 == 0 {
+            cell.backgroundColor = UIColor.clearColor()
+        }
+        
+        else {
+            cell.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.1)
+        }
         //accessing dictionary suing keys
 //        cell.taskLabel.text = taskDict["task"]
 //        cell.taskDetailLabel.text = taskDict["subtask"]
@@ -124,11 +137,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     /* functions for sections*/
     //height for header of the section
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 25
+        return 20
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
+            
             return "To Do:"
         }
         else {
@@ -136,6 +150,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
+    func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String! {
+        
+        if indexPath.section == 0 {
+            return "Done"
+        }
+        else {
+            return "Undo"
+
+        }
+    }
     // NSFetchedResultsControllerDelegate
     /*We need to implement the function controllDidChangeContext. This function is called when the NSFetchedResults controller detects changes made in the CoreData stack. Each time it detects changes, we want to reload the information in the tableView. This is easier then having to call reload ourselves throught the ViewController.*/
     
@@ -144,7 +168,26 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     /*We want to allow the user to swipe a task to mark it as complete. We’ll do that using another tableview delegate and replace our incomplete task with a complete one.
-We'll use the function commitEditingStyle, to detect the delete button being tapped when cells are swiped. Once we detect the delete button tapped, we will first determine which TaskModel was being swiped on. Then we create a new TaskModel using the properties from the current TaskModel and set its' completion to true. After we remove the original TaskModel from the baseArray, insert the new TaskModel into the baseArray's completed Array. Finally, we call reloadData on our TableView, to display the updates to our baseArray.*/
+    We'll use the function commitEditingStyle, to detect the delete button being tapped when cells are swiped. Once we detect the delete button tapped, we will first determine which TaskModel was being swiped on. Then we create a new TaskModel using the properties from the current TaskModel and set its' completion to true. After we remove the original TaskModel from the baseArray, insert the new TaskModel into the baseArray's completed Array. Finally, we call reloadData on our TableView, to display the updates to our baseArray.*/
+    
+    /*
+    * call this function to add more options when user swipes the tableview cell
+    */
+    
+    //    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
+    //        let deleteClosure = { (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
+    //            println("Delete closure called")
+    //        }
+    //
+    //        let moreClosure = { (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
+    //            println("More closure called")
+    //        }
+    //
+    //        let deleteAction = UITableViewRowAction(style: .Default, title: "Delete", handler: deleteClosure)
+    //        let moreAction = UITableViewRowAction(style: .Normal, title: "More", handler: moreClosure)
+    //
+    //        return [deleteAction, moreAction]
+    //    }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
@@ -152,9 +195,12 @@ We'll use the function commitEditingStyle, to detect the delete button being tap
         
         if indexPath.section == 0 {
             thisTask.completed = true
+            println("task completed is true")
         }
         else {
             thisTask.completed = false
+            println("task completed is false")
+            
         }
         //access to AppDelegate instance via (UIApplication.sharedApplication().delegate as AppDelegate)
         (UIApplication.sharedApplication().delegate as AppDelegate).saveContext()
@@ -179,4 +225,5 @@ We'll use the function commitEditingStyle, to detect the delete button being tap
         return fetchRequestsController
     }
 }
+
 

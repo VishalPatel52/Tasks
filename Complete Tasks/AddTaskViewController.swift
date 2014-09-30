@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import CoreData
 
-class AddTaskViewController:UIViewController {
+class AddTaskViewController:UIViewController, UITextFieldDelegate {
     
     //initialise a instance of UIViewController for pasing UIViewController data from TaskViewController to AddTaskViewController (this controller)
     
@@ -65,7 +65,8 @@ class AddTaskViewController:UIViewController {
         
         
         self.dismissViewControllerAnimated(true, completion: nil)
-
         
+        
+
     }
 }

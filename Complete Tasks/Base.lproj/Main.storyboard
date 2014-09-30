@@ -20,6 +20,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" red="0.18823529411764706" green="0.4823529411764706" blue="0.10588235294117647" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="myCell" rowHeight="73" id="QDT-um-Be9" customClass="TaskCell" customModule="Complete_Tasks" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -47,7 +48,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.18823529411764706" green="0.49803921568627452" blue="0.10588235294117647" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="dateLabel" destination="KWz-Vk-lNh" id="Ff0-1G-nH0"/>
                                             <outlet property="taskDetailLabel" destination="5M0-oc-kdx" id="q8k-v6-Rvy"/>
@@ -61,6 +61,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
+                        <color key="backgroundColor" red="0.18823529410000001" green="0.4823529412" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Tasks" id="dQm-yx-kpM">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="B37-Cn-djK">
@@ -97,19 +98,19 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="600"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Task" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UlJ-vl-9no">
-                                        <rect key="frame" x="8" y="88" width="304" height="30"/>
+                                        <rect key="frame" x="8" y="74" width="304" height="30"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Subtask" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rSW-nF-6sQ">
-                                        <rect key="frame" x="8" y="139" width="304" height="30"/>
+                                        <rect key="frame" x="8" y="126" width="304" height="30"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Ped-dy-0QM">
-                                        <rect key="frame" x="0.0" y="219" width="320" height="162"/>
+                                        <rect key="frame" x="0.0" y="180" width="320" height="162"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         <date key="date" timeIntervalSinceReferenceDate="433285216.79826701">
@@ -189,10 +190,10 @@
                                         <rect key="frame" x="20" y="90" width="280" height="30"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" spellCheckingType="yes" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                     <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="q0j-NJ-LdW">
-                                        <rect key="frame" x="0.0" y="219" width="320" height="162"/>
+                                        <rect key="frame" x="0.0" y="150" width="320" height="162"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         <date key="date" timeIntervalSinceReferenceDate="433199033.63571298">
                                             <!--2014-09-23 21:03:53 +0000-->
@@ -244,7 +245,6 @@
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <color key="textShadowColor" red="0.0" green="0.99659199617346939" blue="0.50253348571242695" alpha="1" colorSpace="calibratedRGB"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>

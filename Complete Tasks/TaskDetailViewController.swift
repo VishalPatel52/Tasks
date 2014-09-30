@@ -49,7 +49,7 @@ class TaskDetailViewController:UIViewController {
         detailTaskModel.subTask = subTaskFieldLabel.text
         detailTaskModel.date = dueDatePicker.date
         detailTaskModel.completed = detailTaskModel.completed
-        
+        subTaskFieldLabel.resignFirstResponder()
         
         //change back to main task controller view with save button pressed
         self.navigationController?.popViewControllerAnimated(true)
