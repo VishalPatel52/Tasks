@@ -25,8 +25,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.backgroundColor = UIColor(red: (48/255), green: (123/255), blue: (27/255), alpha: 1)
-            
-            
+        
         //fetchRequest
         fetchRequestsController = getFetchRequest()
         fetchRequestsController.delegate = self
@@ -108,13 +107,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         
         else {
-            cell.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.1)
+            cell.backgroundColor = UIColor.clearColor()
         }
+        
+        
         //accessing dictionary suing keys
 //        cell.taskLabel.text = taskDict["task"]
 //        cell.taskDetailLabel.text = taskDict["subtask"]
 //        cell.dateLabel.text = taskDict["date"]
-        
+
         cell.taskLabel.text = currentTask.task
         cell.taskDetailLabel.text = currentTask.subTask
         cell.dateLabel.text = Date.toString(date: currentTask.date)
@@ -124,9 +125,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     //UITableViewDelegate
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        //print line to check which row in the tableview is pressed
-        println("\(indexPath.section) \(indexPath.row)")
+
         
         //opening a TaskDetailViewController view using defined segue
         
@@ -156,7 +155,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             return "Done"
         }
         else {
-            return "Undo"
+            return "Delete"
 
         }
     }
@@ -189,23 +188,48 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //        return [deleteAction, moreAction]
     //    }
     
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
         let thisTask = fetchRequestsController.objectAtIndexPath(indexPath) as TaskModel
-        
+
         if indexPath.section == 0 {
             thisTask.completed = true
-            println("task completed is true")
         }
         else {
-            thisTask.completed = false
-            println("task completed is false")
+            //thisTask.completed = false
+            if editingStyle == UITableViewCellEditingStyle.Delete {
+                /*
+                * here comes the delete row from tableview
+                */
+                
+                if let tv = self.tableView {
+                    managedObjectContext.deleteObject(thisTask as NSManagedObject)
+                    tv.reloadData()
+                }
+                else {
+                    var error:NSError? = nil
+                    if !managedObjectContext.save(&error){
+                        abort()
+                    }
+                }
+            }
             
         }
+        
+    
+        
         //access to AppDelegate instance via (UIApplication.sharedApplication().delegate as AppDelegate)
         (UIApplication.sharedApplication().delegate as AppDelegate).saveContext()
         
     }
+ 
+ 
+    
     
     
     //Helper function 

@@ -23,7 +23,6 @@ class AddTaskViewController:UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    println("AddNewTaskViewController is loaded")
     }
     
     @IBAction func cancelButtonPressed(sender: UIButton) {
@@ -56,14 +55,12 @@ class AddTaskViewController:UIViewController, UITextFieldDelegate {
         
         var request = NSFetchRequest(entityName: "TaskModel")
         var error:NSError? = nil
-    
         var results:NSArray = managedObjectContext!.executeFetchRequest(request, error: &error)!
-        
         for res in results {
             println(res)
         }
         
-        
+        //Finally we need to close the view and come back to main tableview
         self.dismissViewControllerAnimated(true, completion: nil)
         
         

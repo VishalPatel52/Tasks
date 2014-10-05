@@ -1,0 +1,36 @@
+
+/* Class = "IBUILabel"; text = "Details"; ObjectID = "5M0-oc-kdx"; */
+"5M0-oc-kdx.text" = "Details";
+
+/* Class = "IBUINavigationItem"; title = "Add new task"; ObjectID = "FRB-un-6Et"; */
+"FRB-un-6Et.title" = "Add new task";
+
+/* Class = "IBUIButton"; normalTitle = "Cancel"; ObjectID = "Ffl-S8-htI"; */
+"Ffl-S8-htI.normalTitle" = "Cancel";
+
+/* Class = "IBUILabel"; text = "Date"; ObjectID = "KWz-Vk-lNh"; */
+"KWz-Vk-lNh.text" = "Date";
+
+/* Class = "IBUINavigationItem"; title = "Details"; ObjectID = "PQR-aC-j57"; */
+"PQR-aC-j57.title" = "Details";
+
+/* Class = "IBUIButton"; normalTitle = "Add Task"; ObjectID = "Qla-ep-woA"; */
+"Qla-ep-woA.normalTitle" = "Add Task";
+
+/* Class = "IBUITextField"; placeholder = "Task"; ObjectID = "QyP-MI-eOm"; */
+"QyP-MI-eOm.placeholder" = "Task";
+
+/* Class = "IBUITextField"; placeholder = "Task"; ObjectID = "UlJ-vl-9no"; */
+"UlJ-vl-9no.placeholder" = "Task";
+
+/* Class = "IBUITextField"; placeholder = "SubTask"; ObjectID = "aFP-Io-14a"; */
+"aFP-Io-14a.placeholder" = "SubTask";
+
+/* Class = "IBUILabel"; text = "Task "; ObjectID = "cPb-AN-qYb"; */
+"cPb-AN-qYb.text" = "Task ";
+
+/* Class = "IBUINavigationItem"; title = "Tasks"; ObjectID = "dQm-yx-kpM"; */
+"dQm-yx-kpM.title" = "Tasks";
+
+/* Class = "IBUITextField"; placeholder = "Subtask"; ObjectID = "rSW-nF-6sQ"; */
+"rSW-nF-6sQ.placeholder" = "Subtask";
