@@ -43,10 +43,24 @@ class AddTaskViewController:UIViewController, UITextFieldDelegate {
         let task = TaskModel(entity: entityDescription!, insertIntoManagedObjectContext: managedObjectContext!)
         
         //We then can update our Task instance's properties using the information from our TextFields and DatePicker.
-        task.task = addTaskLabel.text
+        
+        if NSUserDefaults.standardUserDefaults().boolForKey(kShouldCapitalizeTaskKey) == true {
+            task.task = addTaskLabel.text.capitalizedString
+        }
+        else {
+            task.task = addTaskLabel.text            
+        }
+        
+        
         task.subTask = addSubtaskLabel.text
         task.date = addNewtaskDatePicker.date
-        task.completed = false
+        if NSUserDefaults.standardUserDefaults().boolForKey(kShouldCompleteNewToDoKey) == true {
+            task.completed = true
+        }
+        else {
+            task.completed = false
+        }
+        
         
         //we need to save the changes to CoreData by calling the function saveContext()
         appDelegate.saveContext()

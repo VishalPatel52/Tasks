@@ -9,6 +9,12 @@
 import Foundation
 import UIKit
 
+
+//Own protocol
+
+@objc protocol TaskDetailViewControllerDelegate {
+    optional func taskDetailEdited()
+}
 class TaskDetailViewController:UIViewController {
     
     @IBOutlet weak var taskFieldLabel: UITextField!
@@ -17,6 +23,9 @@ class TaskDetailViewController:UIViewController {
        
     
     var detailTaskModel:TaskModel!
+    
+    //delegate variable for defined owned protocol
+    var delegate:TaskDetailViewControllerDelegate?
     
     /*Add a property named mainVC that is of type ViewController.
     load view*/
@@ -53,6 +62,10 @@ class TaskDetailViewController:UIViewController {
         
         //change back to main task controller view with save button pressed
         self.navigationController?.popViewControllerAnimated(true)
+        
+        //call defined protocol function
+        delegate?.taskDetailEdited!()
+        
         
     }
     

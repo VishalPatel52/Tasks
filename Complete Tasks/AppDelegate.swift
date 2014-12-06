@@ -9,6 +9,13 @@
 import UIKit
 import CoreData
 
+
+//gloabl constants
+// constance for NSUserDefaults
+let kShouldCapitalizeTaskKey = "shouldCapitalizeTask"
+let kShouldCompleteNewToDoKey = "shouldCompleteNewToDo"
+let kLoadedOnceKey = "loadedOnce"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -17,6 +24,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        if NSUserDefaults.standardUserDefaults().boolForKey(kLoadedOnceKey) == false{
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: kLoadedOnceKey)
+            NSUserDefaults.standardUserDefaults().setBool(false, forKey: kShouldCapitalizeTaskKey)
+            NSUserDefaults.standardUserDefaults().setBool(false, forKey: kShouldCompleteNewToDoKey)
+            
+            NSUserDefaults.standardUserDefaults().synchronize()
+        }
         return true
     }
 
@@ -54,7 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     lazy var managedObjectModel: NSManagedObjectModel = {
         // The managed object model for the application. This property is not optional. It is a fatal error for the application not to be able to find and load its model.
         let modelURL = NSBundle.mainBundle().URLForResource("CompleteTaskModel", withExtension: "momd")!
-        return NSManagedObjectModel(contentsOfURL: modelURL)
+        return NSManagedObjectModel(contentsOfURL: modelURL)!
         }()
     
     
@@ -72,7 +87,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data"
             dict[NSLocalizedFailureReasonErrorKey] = failureReason
             dict[NSUnderlyingErrorKey] = error
-            error = NSError.errorWithDomain("YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
+            error = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
+
             // Replace this with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             NSLog("Unresolved error \(error), \(error!.userInfo)")

@@ -9,7 +9,10 @@
 /* Begin PBXBuildFile section */
 		C91BF61F19D215E300301472 /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91BF61E19D215E300301472 /* TaskDetailViewController.swift */; };
 		C966053419D3669900B00670 /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C966053319D3669900B00670 /* AddTaskViewController.swift */; };
+		C994511219E3E31800138473 /* reminderOffImage.png in Resources */ = {isa = PBXBuildFile; fileRef = C994511019E3E31800138473 /* reminderOffImage.png */; };
+		C994511319E3E31800138473 /* reminderOnImage.png in Resources */ = {isa = PBXBuildFile; fileRef = C994511119E3E31800138473 /* reminderOnImage.png */; };
 		C99E306719D2ECF600BB0162 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99E306619D2ECF500BB0162 /* Date.swift */; };
+		C9BA68721A33124700F74F89 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BA68711A33124700F74F89 /* SettingsViewController.swift */; };
 		C9C1436519D1ADC90039D0D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C1436419D1ADC90039D0D2 /* AppDelegate.swift */; };
 		C9C1436719D1ADC90039D0D2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C1436619D1ADC90039D0D2 /* ViewController.swift */; };
 		C9C1436A19D1ADC90039D0D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9C1436819D1ADC90039D0D2 /* Main.storyboard */; };
@@ -37,7 +40,10 @@
 		C9402F4419DAF31E0005C766 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		C9402F4519DAF3210005C766 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		C966053319D3669900B00670 /* AddTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
+		C994511019E3E31800138473 /* reminderOffImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reminderOffImage.png; sourceTree = "<group>"; };
+		C994511119E3E31800138473 /* reminderOnImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reminderOnImage.png; sourceTree = "<group>"; };
 		C99E306619D2ECF500BB0162 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		C9BA68711A33124700F74F89 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		C9C1435F19D1ADC90039D0D2 /* Complete Tasks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Complete Tasks.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9C1436319D1ADC90039D0D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9C1436419D1ADC90039D0D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +86,15 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		C994510F19E3E2FF00138473 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				C994511019E3E31800138473 /* reminderOffImage.png */,
+				C994511119E3E31800138473 /* reminderOnImage.png */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
 		C9C1435619D1ADC80039D0D2 = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +118,7 @@
 			children = (
 				C91BF61B19D2104700301472 /* Model */,
 				C9C1436419D1ADC90039D0D2 /* AppDelegate.swift */,
+				C9BA68711A33124700F74F89 /* SettingsViewController.swift */,
 				C9C1436619D1ADC90039D0D2 /* ViewController.swift */,
 				C91BF61E19D215E300301472 /* TaskDetailViewController.swift */,
 				C9C1438419D1BC170039D0D2 /* TaskCell.swift */,
@@ -121,6 +137,7 @@
 		C9C1436219D1ADC90039D0D2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C994510F19E3E2FF00138473 /* images */,
 				C9C2AB4019D627180074E137 /* CoreData.framework */,
 				C9C1436319D1ADC90039D0D2 /* Info.plist */,
 			);
@@ -225,9 +242,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C994511319E3E31800138473 /* reminderOnImage.png in Resources */,
 				C9C1436A19D1ADC90039D0D2 /* Main.storyboard in Resources */,
 				C9C1436F19D1ADC90039D0D2 /* LaunchScreen.xib in Resources */,
 				C9C1436C19D1ADC90039D0D2 /* Images.xcassets in Resources */,
+				C994511219E3E31800138473 /* reminderOffImage.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +272,7 @@
 				C91BF61F19D215E300301472 /* TaskDetailViewController.swift in Sources */,
 				C9C2AB4619D629560074E137 /* TaskModel.swift in Sources */,
 				C966053419D3669900B00670 /* AddTaskViewController.swift in Sources */,
+				C9BA68721A33124700F74F89 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

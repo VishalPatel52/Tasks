@@ -10,7 +10,7 @@
 import UIKit
 import CoreData
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, TaskDetailViewControllerDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -54,12 +54,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             // finally, set the detailTaskModel variable (which we created in the TaskDetailViewController file) to thisTask
             detailVC.detailTaskModel = currentTask
+            //condi
+            detailVC.delegate = self
         }
         else if segue.identifier == "showAddTask" {
             let addTaskVC:AddTaskViewController = segue.destinationViewController as AddTaskViewController
             
         }
     }
+    
+
     
     
     /*We are overriding the viewDidAppear function, which will be called each time the view is presented on the screen. This is different then viewDidLoad which is only called the first time a given ViewController (in this case, the main ViewController) is created. Next, we call the viewDidAppear function on the keyword super, which implements the viewDidAppear functionality from the main ViewController's super classes implementation of viewDidAppear. In effect, we get access to the default functionality of viewDidAppear for free. Finally, we call the function reloadData on the the tableView. This function causes the tableView to recall it's dataSource functions and repopulate the tableView with the updated array. This is no longer needed due to CoreData implementation, which takes care of sorting*/
@@ -140,25 +144,40 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 {
-            
-            return "To Do:"
+        
+        
+        if fetchRequestsController.sections?.count == 1{
+            let fetchedObjects = fetchRequestsController.fetchedObjects!
+            let testTask: TaskModel = fetchedObjects[0] as TaskModel
+            if testTask.completed == true {
+                return "Completed"
+            }
+            else {
+                return " To Do:"
+            }
         }
         else {
-            return "Completed:"
+            if section == 0 {
+                
+                return "To Do:"
+            }
+            else {
+                return "Completed:"
+            }
         }
+        
     }
     
-    func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String! {
-        
-        if indexPath.section == 0 {
-            return "Done"
-        }
-        else {
-            return "Delete"
-
-        }
-    }
+//    func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String! {
+//        
+//        if indexPath.section == 0 {
+//            return "Done"
+//        }
+//        else {
+//            return "Delete"
+//
+//        }
+//    }
     // NSFetchedResultsControllerDelegate
     /*We need to implement the function controllDidChangeContext. This function is called when the NSFetchedResults controller detects changes made in the CoreData stack. Each time it detects changes, we want to reload the information in the tableView. This is easier then having to call reload ourselves throught the ViewController.*/
     
@@ -189,36 +208,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //    }
     
     
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
+//    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+//        return true
+//    }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
         let thisTask = fetchRequestsController.objectAtIndexPath(indexPath) as TaskModel
-
-        if indexPath.section == 0 {
-            thisTask.completed = true
+        
+        if thisTask.completed == true {
+            thisTask.completed = false
         }
         else {
-            //thisTask.completed = false
-            if editingStyle == UITableViewCellEditingStyle.Delete {
-                /*
-                * here comes the delete row from tableview
-                */
-                
-                if let tv = self.tableView {
-                    managedObjectContext.deleteObject(thisTask as NSManagedObject)
-                    tv.reloadData()
-                }
-                else {
-                    var error:NSError? = nil
-                    if !managedObjectContext.save(&error){
-                        abort()
-                    }
-                }
-            }
-            
+            thisTask.completed = true
         }
         
     
@@ -248,6 +250,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         fetchRequestsController = NSFetchedResultsController(fetchRequest: taskFetchRequest(), managedObjectContext: managedObjectContext, sectionNameKeyPath: "completed", cacheName: nil)
         return fetchRequestsController
     }
+    
+    //TaskDetailViewControllerDelegate
+    
+    func taskDetailEdited() {
+        showAletView()
+    }
+    
+    func showAletView(){
+        
+        var alertViewController = UIAlertController(title: "Change made", message: "Congratulations!", preferredStyle: UIAlertControllerStyle.Alert)
+        alertViewController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+        
+        self.presentViewController(alertViewController, animated: true, completion: nil)
+    
+    }
 }
+
 
 
